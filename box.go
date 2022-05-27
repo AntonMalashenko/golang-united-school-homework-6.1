@@ -47,20 +47,39 @@ func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 }
 
 // SumPerimeter provides sum perimeter of all shapes in the list.
-func (b *box) SumPerimeter() float64 {
-	panic("implement me")
-
+func (b *box) SumPerimeter() (sum float64) {
+	for _, shape := range b.shapes {
+		sum += shape.CalcPerimeter()
+	}
+	return
 }
 
 // SumArea provides sum area of all shapes in the list.
-func (b *box) SumArea() float64 {
-	panic("implement me")
+func (b *box) SumArea() (sum float64) {
+	for _, shape := range b.shapes {
+		sum += shape.CalcArea()
+	}
+	return
 
 }
 
 // RemoveAllCircles removes all circles in the list
 // whether circles are not exist in the list, then returns an error
 func (b *box) RemoveAllCircles() error {
-	panic("implement me")
-
+	newShapes := make([]Shape, 0)
+	exists := false
+	for _, shape := range b.shapes {
+		switch shape.(type) {
+		default:
+			newShapes = append(newShapes, shape)
+		case Circle:
+			exists = true
+		}
+	}
+	if !exists {
+		return errors.New("no circles")
+	} else {
+		b.shapes = newShapes
+		return nil
+	}
 }
