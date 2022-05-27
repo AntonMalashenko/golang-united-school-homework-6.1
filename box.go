@@ -83,10 +83,11 @@ func (b *box) RemoveAllCircles() error {
 	newShapes := make([]Shape, 0)
 	exists := false
 	for _, shape := range b.shapes {
-		switch shape.(type) {
-		default:
+		_, ok1 := shape.(Circle)
+		_, ok2 := shape.(*Circle)
+		if !ok2 && !ok1 {
 			newShapes = append(newShapes, shape)
-		case Circle:
+		} else {
 			exists = true
 		}
 	}
