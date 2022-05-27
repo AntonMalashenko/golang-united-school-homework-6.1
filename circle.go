@@ -4,7 +4,6 @@ import "math"
 
 // Circle must satisfy to Shape interface
 type Circle struct {
-	Shape
 	Radius float64
 }
 

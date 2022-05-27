@@ -4,7 +4,6 @@ import "math"
 
 // Triangle must satisfy to Shape interface
 type Triangle struct {
-	Shape
 	Side float64
 }
 
